@@ -1700,7 +1700,7 @@ html, body {
   }
 
   .hype-rankings {
-    transform: translateX(-100%);
+    transform: translateX(-100%) !important;
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     width: 280px;
     top: 100px;
