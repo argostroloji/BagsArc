@@ -11,6 +11,7 @@ export default function HypeRankings() {
   const { islands, focusIsland } = useTokenStore();
   const { battleTokenIds } = useTradeStore();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const formatMC = (n: number) => {
     if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`;
@@ -25,9 +26,18 @@ export default function HypeRankings() {
   };
 
   return (
-    <motion.div
-      className="hype-rankings"
-      initial={{ x: -400, opacity: 0 }}
+    <>
+      {/* Mobile Toggle Button */}
+      <button 
+        className="rankings-toggle-btn-mobile"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+      >
+        🏆
+      </button>
+
+      <motion.div
+        className={`hype-rankings ${isMobileOpen ? 'mobile-open' : ''}`}
+        initial={{ x: -400, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
     >
@@ -139,5 +149,6 @@ export default function HypeRankings() {
         })}
       </div>
     </motion.div>
+    </>
   );
 }
